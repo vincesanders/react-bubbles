@@ -107,6 +107,7 @@ const ColorList = ({ colors, updateColors }) => {
                 })
               }
               value={colorToEdit.code.hex}
+              pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
             />
           </label>
           <div className="button-row">
