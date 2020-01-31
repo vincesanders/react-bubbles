@@ -31,19 +31,21 @@ const ColorList = ({ colors, updateColors }) => {
     // where is is saved right now?
     if (editing) {
       axiosWithAuth()
-      .put(`/api/colors/${colorToEdit.id}`, colorToEdit)
-      .then(res => {
+        .put(`/api/colors/${colorToEdit.id}`, colorToEdit)
+        .then(res => {
+          setEditing(false);
           updateColors(colors.map(color => {
             if (color.id === colorToEdit.id) {
               return res.data;
             }
             return color;
           }));
-      }).catch(err => console.log(err));
+        }).catch(err => console.log(err));
     } else {
       axiosWithAuth()
         .post('/api/colors', colorToEdit)
         .then(res => {
+          setAdding(false);
           //res.data returns new colors array
           updateColors(res.data);
         }).catch(err => console.log(err));
